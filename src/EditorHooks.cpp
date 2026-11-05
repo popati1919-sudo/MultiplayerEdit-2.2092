@@ -386,8 +386,8 @@ namespace {
                 log::error("Failed to read compressed sync payload from temp file");
             }
 
-            std::error_code ec;
-            std::filesystem::remove(tempPath, ec);
+            // Geode's path type is not std::filesystem::path on all supported SDK builds.
+            // The temporary archive is kept in Geode's temp directory and may be overwritten.
         }
 
         constexpr size_t MAX_CHUNK_BYTES = 10000;
@@ -1336,7 +1336,7 @@ class $modify(MPEditorUI, EditorUI) {
         return EditorUI::createCustomItems();
     }
 
-    cocos2d::CCSprite* spriteFromObjectString(gd::string str, bool absoluteCenter, bool useGroup, int objLimit, cocos2d::CCArray* objects, cocos2d::CCArray* group, GameObject* groupParent) {
+    cocos2d::CCSprite* spriteFromObjectString(std::string str, bool absoluteCenter, bool useGroup, int objLimit, cocos2d::CCArray* objects, cocos2d::CCArray* group, GameObject* groupParent) {
         PreviewScope scope;
         return EditorUI::spriteFromObjectString(str, absoluteCenter, useGroup, objLimit, objects, group, groupParent);
     }
@@ -1349,16 +1349,6 @@ class $modify(MPEditorUI, EditorUI) {
     void onSettings(cocos2d::CCObject* sender) {
         if (SessionManager::get().isLocalPlayerViewOnly()) return;
         EditorUI::onSettings(sender);
-    }
-
-    void undoLastAction(cocos2d::CCObject* sender) {
-        if (SessionManager::get().isLocalPlayerViewOnly()) return;
-        EditorUI::undoLastAction(sender);
-    }
-
-    void redoLastAction(cocos2d::CCObject* sender) {
-        if (SessionManager::get().isLocalPlayerViewOnly()) return;
-        EditorUI::redoLastAction(sender);
     }
 
     void onCreateObject(int id) {
@@ -1933,7 +1923,7 @@ class $modify(MPEditorUI, EditorUI) {
     void rotateObjects(cocos2d::CCArray* objects, float rotation, cocos2d::CCPoint pivotPoint) {
         if (SessionManager::get().isLocalPlayerViewOnly()) return;
         syncTransformedObjects(objects, [&]() {
-            EditorUI::rotateObjects(objects, rotation, pivotPoint);
+            EditorUI::rotateObjects(objects, rotation, pivotPoint, false);
         });
     }
 

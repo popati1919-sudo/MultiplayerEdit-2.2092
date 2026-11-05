@@ -41,7 +41,7 @@ public:
         int targetPrio = dispatcher->getTargetPrio();
         dispatcher->addTargetedDelegate(this, targetPrio, true);
         if (this->m_forcePrioRegistered) {
-            dispatcher->registerForcePrio(this, 2);
+            dispatcher->registerForcePrio(this, 2, 0);
         }
         syncTouchPriority(this);
     }
