@@ -1,7 +1,7 @@
 {
     "geode": "6.0.0-alpha.1",
     "gd": {
-        "win": "2.2092",
+        "win": "2.2091",
         "android": "2.2092",
         "mac": "2.2092",
         "ios": "2.2092"
@@ -48,11 +48,7 @@
             "name": "Connection Mode",
             "description": "How to connect to other players. Auto is recommended. STUN Only is direct connection only. TURN Only routes through a relay.",
             "default": "Auto",
-            "one-of": [
-                "Auto",
-                "STUN Only",
-                "TURN Only"
-            ]
+            "one-of": ["Auto", "STUN Only", "TURN Only"]
         },
         "player-name": {
             "type": "string",
