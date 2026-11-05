@@ -146,7 +146,8 @@ namespace mpedit {
                 360.f,
                 ccp(0.5f, 0.5f),
                 21.f,
-                false
+                false,
+                0
             );
             m_textArea->setScale(0.85f);
             m_mainLayer->addChildAtPosition(m_textArea, Anchor::Center, ccp(0.f, 5.f));
@@ -319,7 +320,8 @@ namespace mpedit {
                 360.f,
                 ccp(0.5f, 0.5f),
                 21.f,
-                false
+                false,
+                0
             );
             m_textArea->setScale(0.85f);
             m_mainLayer->addChildAtPosition(m_textArea, Anchor::Center, ccp(0.f, 8.f));
