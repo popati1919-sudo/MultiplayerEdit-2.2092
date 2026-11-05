@@ -1,0 +1,29 @@
+name: Build Mod
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    name: Windows
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Mod for Windows
+        uses: geode-sdk/build-geode-mod@main
+        with:
+          sdk: v6.0.0-alpha.1
+          target: Win64
+          configure-args: "-DCMAKE_POLICY_VERSION_MINIMUM=3.5"
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: MultiplayerEdit-Windows
+          path: build/*.geode
+          if-no-files-found: error

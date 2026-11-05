@@ -48,7 +48,11 @@
             "name": "Connection Mode",
             "description": "How to connect to other players. Auto is recommended. STUN Only is direct connection only. TURN Only routes through a relay.",
             "default": "Auto",
-            "one-of": ["Auto", "STUN Only", "TURN Only"]
+            "one-of": [
+                "Auto",
+                "STUN Only",
+                "TURN Only"
+            ]
         },
         "player-name": {
             "type": "string",
@@ -133,7 +137,7 @@
         "cloud-auth-token": {
             "type": "string",
             "name": "Cloud Auth Token",
-            "description": "Your private token for uploading and managing levels on the Cloud Server. Get this from the server admin.",
+            "description": "Your private token for uploading and managing levels on the Cloud Server.",
             "default": ""
         }
     }
